@@ -2,9 +2,13 @@ package co.ufps.elecciones.dao;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import co.ufps.elecciones.model.Estatemento;
+import co.ufps.elecciones.model.TipoDocumento;
 import co.ufps.elecciones.model.Votante;
 import co.ufps.elecciones.util.ConexionPostgreSql;
 
@@ -52,20 +56,64 @@ private ConexionPostgreSql conexion;
 
 	@Override
 	public void updateVotante(Votante votante) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preStatement = (PreparedStatement)conexion.setPreparedStatement(UPDATE_VOTANTE_SQL);
+			preStatement.setString(1, votante.getNombre());
+			preStatement.setString(2,  votante.getEmail());
+			preStatement.setString(3, votante.getDocumento());
+			preStatement.setInt(4, votante.getTipoDocumento().getId());
+			preStatement.setInt(5, votante.getEleccion().getId());
+			preStatement.setInt(6, votante.getId());
+			
+			conexion.execute();
+			
+		}catch (SQLException e) {}
 		
 	}
 
 	@Override
 	public List<Votante> findAllVotante() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList <Votante> users = new ArrayList<>();
+		try {
+			PreparedStatement preStatement = (PreparedStatement)conexion.setPreparedStatement(SELECT_ALL_VOTANTE);
+			ResultSet rs = conexion.query();
+			
+			while(rs.next()){
+				int id = rs.getInt("idVotante");
+				
+				String nombre = rs.getString("nombreVotante");
+				String email = rs.getString("emailVotante");
+				String documento = rs.getString("documentoVotante");
+				
+				//falta
+				int  tipodocumento = rs.getInt("tipoDocumentoVotante");
+				int  eleccion = rs.getInt("eleccionVotante");
+				users.add(new Votante(id, nombre, email, documento, null, null, null));
+			}
+		}catch (SQLException e) {}
+		return users;
 	}
 
 	@Override
 	public Votante findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Votante votante = null;
+		try {
+			PreparedStatement preStatement = (PreparedStatement)conexion.setPreparedStatement(SELECT_VOTANTE_BY_ID);
+			preStatement.setInt(1, id); 
+			ResultSet rs = conexion.query();
+			while(rs.next()){
+				String nombre = rs.getString("nombreVotante");
+				String email = rs.getString("emailVotante");
+				String documento = rs.getString("documentoVotante");
+				
+				//falta
+				int  tipodocumento = rs.getInt("tipoDocumentoVotante");
+				int  eleccion = rs.getInt("eleccionVotante");
+				
+				votante = new Votante(id, nombre, email, documento, null, null, null);
+			}
+		}catch (SQLException e) {}
+		return votante;
 	}
 
 }
