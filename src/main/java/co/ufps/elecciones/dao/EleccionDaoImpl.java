@@ -77,14 +77,14 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idEleccion");
-				String nombre = rs.getString("nombreEleccion");
-				Date inicio = rs.getDate("fechaInicioEleccion");
-				Date fin = rs.getDate("fechaFinEleccion");
-				String cargo = rs.getString("cargoEleccion");
+				int id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				Date inicio = rs.getDate("fechainicio");
+				Date fin = rs.getDate("fechafin");
+				String cargo = rs.getString("cargo");
 				
-				//falta trar eleccion 
-				Eleccion ele = new Eleccion();
+				//falta trar array 
+				
 							
 				int numero = rs.getInt("numeroEleccion");
 				users.add(new Eleccion(id, nombre, inicio, fin, cargo, null, null, null));
@@ -101,10 +101,11 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				String nombre = rs.getString("nombreEleccion");
-				Date inicio = rs.getDate("fechaInicioEleccion");
-				Date fin = rs.getDate("fechaFinEleccion");
-				String cargo = rs.getString("cargoEleccion");
+				String nombre = rs.getString("nombre");
+				Date inicio = rs.getDate("fechainicio");
+				Date fin = rs.getDate("fechafin");
+				String cargo = rs.getString("cargo");
+				
 				
 				eleccion = new Eleccion(id, nombre, inicio, fin, cargo, null, null, null);
 			}

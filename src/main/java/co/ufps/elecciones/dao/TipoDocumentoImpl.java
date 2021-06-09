@@ -68,10 +68,10 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idDocumento");
+				int id = rs.getInt("id");
+				String desc = rs.getString("descripcion");
 				
-				String desc = rs.getString("descripcionEstatemento");
-				
+				//falta array
 				users.add(new TipoDocumento(id, desc, null));
 			}
 		}catch (SQLException e) {}
@@ -86,8 +86,9 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				//obtener eleccion
-				String desc = rs.getString("descripcionEstatemento");
+				String desc = rs.getString("descripcion");
+				
+				//falta array
 				
 				documento = new TipoDocumento(id, desc, null);
 			}

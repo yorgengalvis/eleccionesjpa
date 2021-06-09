@@ -76,15 +76,18 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idCandidato");
-				String doc = rs.getString("documentoCandidato");
-				String nombre = rs.getString("nombreCandidato");
-				String apellido = rs.getString("apellidoCandidato");
+				int id = rs.getInt("id");
+				String doc = rs.getString("documento");
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				int ideleccion = rs.getInt("eleccion");
+				int numero = rs.getInt("numero");
 				
-				//falta trar eleccion 
-				Eleccion ele = new Eleccion();
-							
-				int numero = rs.getInt("numeroCandidato");
+				EleccionDaoImpl eleccion = new EleccionDaoImpl();
+				Eleccion ele = eleccion.findById(ideleccion);
+				
+				//falta array
+				
 				users.add(new Candidato(id, doc, nombre, apellido, ele, numero, null));
 			}
 		}catch (SQLException e) {}
@@ -99,14 +102,15 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				String doc = rs.getString("documentoCandidato");
-				String nombre = rs.getString("nombreCandidato");
-				String apellido = rs.getString("apellidoCandidato");
+				String doc = rs.getString("documento");
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				int ideleccion = rs.getInt("eleccion");
+				int numero = rs.getInt("numero");
 				
-				//falta trar eleccion 
-				Eleccion ele = new Eleccion();
-							
-				int numero = rs.getInt("numeroCandidato");
+				EleccionDaoImpl eleccion = new EleccionDaoImpl();
+				Eleccion ele = eleccion.findById(ideleccion);
+				
 				candidato = new Candidato(id, doc, nombre, apellido, ele, numero, null);
 			}
 		}catch (SQLException e) {}

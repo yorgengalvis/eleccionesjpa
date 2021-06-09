@@ -75,14 +75,16 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idEstatemento");
+				int id = rs.getInt("id");
+
+				int idelec = rs.getInt("eleccion");
+				String desc = rs.getString("descripcion");
 				
-				//obtener eleccion
-				String elec = rs.getString("eleccionEstatemento");
-				
-				String desc = rs.getString("descripcionEstatemento");
-				
-				users.add(new Estatemento(id, null, desc, null));
+				EleccionDaoImpl eleccion = new EleccionDaoImpl();
+				Eleccion ele = eleccion.findById(idelec);
+	
+				//falta array
+				users.add(new Estatemento(id, ele, desc, null));
 			}
 		}catch (SQLException e) {}
 		return users;
@@ -96,12 +98,14 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				//obtener eleccion
-				String elec = rs.getString("documentoEstatemento");
+				int idelec = rs.getInt("eleccion");
+				String desc = rs.getString("descripcion");
 				
-				String desc = rs.getString("nombreEstatemento");
-				
-				estatemento = new Estatemento(id, null, desc, null);
+				EleccionDaoImpl eleccion = new EleccionDaoImpl();
+				Eleccion ele = eleccion.findById(idelec);
+	
+				//falta array
+				estatemento = new Estatemento(id, ele, desc, null);
 			}
 		}catch (SQLException e) {}
 		return estatemento;

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.ufps.elecciones.model.Candidato;
+import co.ufps.elecciones.model.Estatemento;
 import co.ufps.elecciones.model.Votante;
 import co.ufps.elecciones.model.Voto;
 import co.ufps.elecciones.util.ConexionPostgreSql;
@@ -82,17 +84,27 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idVoto");
+				int id = rs.getInt("id");
 				
-				Date creacion = rs.getDate("fechaCreacionVoto");
-				Date fechaVoto = rs.getDate("fechaVoto");
-				String uuid = rs.getString("uuidVoto");
-				String enlace = rs.getString("enlaceVoto");
-				int estatemento = rs.getInt("estatementoVoto");
-				int candidato = rs.getInt("candidatoVoto");
-				int votante = rs.getInt("votantanteVoto");
+				Date creacion = rs.getDate("fechacreacion");
+				Date fechaVoto = rs.getDate("fechavoto");
+				String uuid = rs.getString("uuidV");
+				String enlace = rs.getString("enlace");
 				
-				users.add(new Voto(id, creacion, fechaVoto, uuid, enlace, null, null, null));
+				
+				int idestatemento = rs.getInt("estatemento");
+				EstatementoDaoImpl estatemento = new EstatementoDaoImpl();
+				Estatemento esta = estatemento.findById(idestatemento);
+				
+				int idcandidato = rs.getInt("candidato");
+				CandidatoDaoImpl candidato = new CandidatoDaoImpl();
+				Candidato cand = candidato.findById(idcandidato);
+				
+				int idvotante = rs.getInt("votantante");
+				VotanteDaoImpl votante = new VotanteDaoImpl();
+				Votante vot = votante.findById(idvotante);
+				
+				users.add(new Voto(id, creacion, fechaVoto, uuid, enlace, esta, cand, vot));
 			}
 		}catch (SQLException e) {}
 		return users;
@@ -106,15 +118,25 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				Date creacion = rs.getDate("fechaCreacionVoto");
-				Date fechaVoto = rs.getDate("fechaVoto");
-				String uuid = rs.getString("uuidVoto");
-				String enlace = rs.getString("enlaceVoto");
-				int estatemento = rs.getInt("estatementoVoto");
-				int candidato = rs.getInt("candidatoVoto");
-				int votante = rs.getInt("votantanteVoto");
+				Date creacion = rs.getDate("fechacreacion");
+				Date fechaVoto = rs.getDate("fechavoto");
+				String uuid = rs.getString("uuidV");
+				String enlace = rs.getString("enlace");
 				
-				voto = new Voto(id, creacion, fechaVoto, uuid, enlace, null, null, null);
+				
+				int idestatemento = rs.getInt("estatemento");
+				EstatementoDaoImpl estatemento = new EstatementoDaoImpl();
+				Estatemento esta = estatemento.findById(idestatemento);
+				
+				int idcandidato = rs.getInt("candidato");
+				CandidatoDaoImpl candidato = new CandidatoDaoImpl();
+				Candidato cand = candidato.findById(idcandidato);
+				
+				int idvotante = rs.getInt("votantante");
+				VotanteDaoImpl votante = new VotanteDaoImpl();
+				Votante vot = votante.findById(idvotante);
+				
+				voto = new Voto(id, creacion, fechaVoto, uuid, enlace, esta, cand, vot);
 			}
 		}catch (SQLException e) {}
 		return voto;

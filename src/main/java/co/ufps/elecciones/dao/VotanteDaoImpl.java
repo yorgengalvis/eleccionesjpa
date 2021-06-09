@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.ufps.elecciones.model.Eleccion;
 import co.ufps.elecciones.model.Estatemento;
 import co.ufps.elecciones.model.TipoDocumento;
 import co.ufps.elecciones.model.Votante;
@@ -79,16 +80,23 @@ private ConexionPostgreSql conexion;
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()){
-				int id = rs.getInt("idVotante");
+				int id = rs.getInt("id");
 				
-				String nombre = rs.getString("nombreVotante");
-				String email = rs.getString("emailVotante");
-				String documento = rs.getString("documentoVotante");
+				String nombre = rs.getString("nombre");
+				String email = rs.getString("email");
+				String documento = rs.getString("documento");
 				
-				//falta
-				int  tipodocumento = rs.getInt("tipoDocumentoVotante");
-				int  eleccion = rs.getInt("eleccionVotante");
-				users.add(new Votante(id, nombre, email, documento, null, null, null));
+				int  idtipo = rs.getInt("tipodocumento");
+				TipoDocumentoImpl tipoDoc = new TipoDocumentoImpl();
+				TipoDocumento tipoDocumento = tipoDoc.findById(idtipo);
+				
+				int  ideleccion = rs.getInt("eleccion");
+				EleccionDaoImpl ele = new EleccionDaoImpl();
+				Eleccion eleccion = ele.findById(ideleccion);
+				
+				//falta array
+				
+				users.add(new Votante(id, nombre, email, documento, tipoDocumento, eleccion, null));
 			}
 		}catch (SQLException e) {}
 		return users;
@@ -102,15 +110,19 @@ private ConexionPostgreSql conexion;
 			preStatement.setInt(1, id); 
 			ResultSet rs = conexion.query();
 			while(rs.next()){
-				String nombre = rs.getString("nombreVotante");
-				String email = rs.getString("emailVotante");
-				String documento = rs.getString("documentoVotante");
+				String nombre = rs.getString("nombre");
+				String email = rs.getString("email");
+				String documento = rs.getString("documento");
 				
-				//falta
-				int  tipodocumento = rs.getInt("tipoDocumentoVotante");
-				int  eleccion = rs.getInt("eleccionVotante");
+				int  idtipo = rs.getInt("tipodocumento");
+				TipoDocumentoImpl tipoDoc = new TipoDocumentoImpl();
+				TipoDocumento tipoDocumento = tipoDoc.findById(idtipo);
 				
-				votante = new Votante(id, nombre, email, documento, null, null, null);
+				int  ideleccion = rs.getInt("eleccion");
+				EleccionDaoImpl ele = new EleccionDaoImpl();
+				Eleccion eleccion = ele.findById(ideleccion);
+				
+				votante = new Votante(id, nombre, email, documento, tipoDocumento, eleccion, null));
 			}
 		}catch (SQLException e) {}
 		return votante;
