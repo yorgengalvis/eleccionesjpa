@@ -34,9 +34,6 @@ public class Candidato {
 	@Column (name = "numero", nullable = false, length = 15)
 	private Integer numero;
 	
-	public Candidato() {
-		super();
-	}
 	
 	public Candidato(String documento, String nombre, String apellido, Eleccion eleccion, Integer numero) {
 		super();

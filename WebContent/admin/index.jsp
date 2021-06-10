@@ -30,14 +30,14 @@
             <div class="card card-body mb-5 justify-content-between">
                 <div class="row mb-3 ">
                     <div class="col-sm-3">
-                        <a href="votantes.html"><div class="card">
+                        <a href="votantes"><div class="card">
                             <div class="card-header tx-center bg-red">
                                 Votantes
                             </div>
                         </div></a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="candidatos.html"><div class="card">
+                        <a href="candidatos"><div class="card">
                          <div class="card-header tx-center bg-red">
                              Candidatos
                          </div>
@@ -54,7 +54,7 @@
                 <div class="row">
                    
                    <div class="col-sm-3">
-                    <a href="estametos"><div class="card">
+                    <a href="estamentos"><div class="card">
                         <div class="card-header tx-center bg-red">
                             Estamentos
                         </div>
