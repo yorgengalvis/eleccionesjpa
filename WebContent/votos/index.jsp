@@ -30,7 +30,7 @@
            <div class="container mt-3" >
            <a href="admin" class="btn bg-red m-2">Regresar</a>
                <div class="card">
-                   <div class="card-header bg-red tx-center">Administración de Tipos de documento</div>
+                   <div class="card-header bg-red tx-center">Administración de Votos</div>
                    <div class="card-body">
                        <div class="card-body">
                        </div>
@@ -49,16 +49,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                  		<th>1</th>
-                                  		<th>24/01/2021</th>
-                                  		<th>25/01/2021</th>
-                                  		<th>5cs57ds</th>
-                                  		<th>5cs57ds9$44sd21cx2154sd20</th>
-                                  		<th>Docentes</th>
-                                  		<th>Hector Parra</th>
-                                  		<th>Leonardo Jacome</th>
+                                <c:forEach var="voto" items="${listadoVotos}">
+                                 <tr>
+                                        <td><c:out value="${voto.getId()}"></c:out></td>
+                                        <td><c:out value="${voto.getFechaCreacion()"></c:out></td>
+                                         <td><c:out value="${voto.getFechaVoto()}"></c:out></td>
+                                        <td><c:out value="${voto.getUuid()}"></c:out></td>
+                                         <td><c:out value="${voto.getEnlace()}"></c:out></td>
+                                        <td><c:out value="${voto.getEstatemento()}"></c:out></td>
+                                         <td><c:out value="${voto.getCandidato()}"></c:out></td>
+                                        <td><c:out value="${voto.getVotante()}"></c:out></td>
+                                        
                                   </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
