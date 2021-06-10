@@ -67,6 +67,13 @@
                         </div>
                     </div></a>
                    </div>
+                   <div class="col-sm-3">
+                    <a href="votos"><div class="card">
+                        <div class="card-header tx-center bg-red">
+                           Votos
+                        </div>
+                    </div></a>
+                   </div>
                 </div>
             </div>
       </div>
