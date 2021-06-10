@@ -30,9 +30,7 @@ public class Eleccion {
 	@Column (name = "cargo", nullable = false, length = 50)
 	private String cargo;
 	
-	public Eleccion() {
-		super();
-	}
+
 	public Eleccion(String nombre, Timestamp fechaInicio, Timestamp fechaFin, String cargo) {
 		super();
 		this.nombre = nombre;

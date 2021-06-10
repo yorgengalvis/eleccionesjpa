@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+*{
+   padding:0px;
+   margin:0px;
+}
+
+:root{
+    --principal:#e2031a;
+}
+
+header{
+    width: 100%;
+    border-bottom: 5px solid #bbff00fb;
+}
+
+.line-roja{
+    padding:15px;
+    background-color: var(--principal);
+}
+.header>.informacion{
+    margin:auto;
+}
+
+.bg-red{
+    background-color:var(--principal);
+    color:white;
+}
+.tx-center{
+    text-align: center;
+}
+
+.informacion{
+    padding: 20px;
+}
+
+.informacion>label{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.bg-red:hover{
+    color:White;
+}
+
+
+.br-2{
+    border-radius: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.informacion>img{
+width:7%;
+}
+
+.candidate{
+    width:25%;
+    height:25%;
+    border-radius: 20px;
+    border:10px solid white;
+}
+
+@media (max-width:500px){
+    .informacion>img{
+        width:50%;
+        }
+    .w-50{
+        width:100% !important;
+    } 
+}

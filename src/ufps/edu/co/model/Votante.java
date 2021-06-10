@@ -33,7 +33,7 @@ public class Votante {
 	@JoinColumn(name = "eleccion")
 	private Eleccion eleccion;
 	
-	public Votante() {}
+
 	public Votante(String nombre, String email, String documento, TipoDocumento tipoDocumento, Eleccion eleccion) {
 		super();
 		this.nombre = nombre;
