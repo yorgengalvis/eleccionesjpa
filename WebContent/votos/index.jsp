@@ -51,14 +51,14 @@
                                 <tbody>
                                 <c:forEach var="voto" items="${listadoVotos}">
                                  <tr>
-                                        <td><c:out value="${voto.getId()}"></c:out></td>
-                                        <td><c:out value="${voto.getFechaCreacion()"></c:out></td>
-                                         <td><c:out value="${voto.getFechaVoto()}"></c:out></td>
-                                        <td><c:out value="${voto.getUuid()}"></c:out></td>
-                                         <td><c:out value="${voto.getEnlace()}"></c:out></td>
-                                        <td><c:out value="${voto.getEstatemento()}"></c:out></td>
-                                         <td><c:out value="${voto.getCandidato()}"></c:out></td>
-                                        <td><c:out value="${voto.getVotante()}"></c:out></td>
+                                        <td><c:out value="${voto.id}"></c:out></td>
+                                        <td><c:out value="${voto.fechacreacion}"></c:out></td>
+                                         <td><c:out value="${voto.fechavoto}"></c:out></td>
+                                        <td><c:out value="${voto.uuid}"></c:out></td>
+                                         <td><c:out value="${voto.enlace}"></c:out></td>
+                                        <td><c:out value="${voto.estamento.descripcion}"></c:out></td>
+                                         <td><c:out value="${voto.candidato.nombre}"></c:out></td>
+                                        <td><c:out value="${voto.votante.nombre}"></c:out></td>
                                         
                                   </tr>
                                 </c:forEach>
