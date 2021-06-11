@@ -158,7 +158,7 @@ public class VotantesController extends HttpServlet {
 		
 		EnviarEmail serviceMail=new EnviarEmail("progwebtesteos@gmail.com","Programacion2021");
 		String receptor=v.getEmail();
-		String url="http://localhost:8080/EleccionesUFPS2021/votar?action=validar&token="+enlace;
+		String url="http://40.84.138.56:8080/EleccionesUFPS2021/votar?action=validar&token="+enlace;
 		String asunto="Proceso de Consulta "+est.getEleccion().getNombre();
 		String cuerpo="Estimado <strong>"+v.getNombre()+"</strong>,"+ 
 				"<p>Se le ha creado usuario para el proceso de consulta <strong>"+est.getEleccion().getNombre()+"</strong>, por lo que a continuaciòn apareceran sus datos de ingreso a la plataforma:</p>"
