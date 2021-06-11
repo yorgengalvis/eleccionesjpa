@@ -52,14 +52,13 @@
                                 <c:forEach var="voto" items="${listadoVotos}">
                                  <tr>
                                         <td><c:out value="${voto.id}"></c:out></td>
-                                        <td><c:out value="${voto.fechacreacion}"></c:out></td>
-                                         <td><c:out value="${voto.fechavoto}"></c:out></td>
+                                        <td><c:out value="${voto.fechaCreacion}"></c:out></td>
+                                         <td><c:out value="${voto.fechaVoto}"></c:out></td>
                                         <td><c:out value="${voto.uuid}"></c:out></td>
                                          <td><c:out value="${voto.enlace}"></c:out></td>
                                         <td><c:out value="${voto.estamento.descripcion}"></c:out></td>
                                          <td><c:out value="${voto.candidato.nombre}"></c:out></td>
                                         <td><c:out value="${voto.votante.nombre}"></c:out></td>
-                                        
                                   </tr>
                                 </c:forEach>
                                 </tbody>

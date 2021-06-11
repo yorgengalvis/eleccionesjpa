@@ -1,6 +1,7 @@
 package ufps.edu.co.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import ufps.edu.co.dao.EleccionDAO;
 import ufps.edu.co.dao.EstamentoDAO;
@@ -50,6 +53,8 @@ public class EstamentoController extends HttpServlet {
 				switch(action) {
 		 			case "delete":delete(request,response);
 						break;
+		 			case "get":get(request,response);
+		 					break;
 		 			case "edit":edit(request,response);
 		 			break;
 					default: 
@@ -61,6 +66,17 @@ public class EstamentoController extends HttpServlet {
 			}
 			
 		}
+	}
+	
+	private void get(HttpServletRequest request,HttpServletResponse response ) 
+			throws ServletException, SQLException, IOException{
+			Integer id=Integer.parseInt(request.getParameter("id"));
+			Estamento estamento=eDAO.find(id);
+			String json = new Gson().toJson(estamento.getEleccion());
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+			
 	}
 	
 	private void edit(HttpServletRequest request,HttpServletResponse response ) 
