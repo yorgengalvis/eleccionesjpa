@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/main.css">
-<title> Votar | Sistema Votaciones</title>
+<title>Confirmar Voto | Sistema Votaciones</title>
 </head>
 <body>
 
@@ -31,41 +31,30 @@
     </div>
       <div class="container mt-3" >
          <div class="card card-header bg-red tx-center">
-            Selección de candidato
+                Confirmar Voto
             </div>
-            <div class="card card-body">
-                <p class="tx-center">Rectoria UFPS 2021 <br>
-                    <label class="name-estamento">Docente</label>
-                </p>
-                <p>Debes seleccionar el candidato de preferencia y confirmar tu voto.</p>
-                
-                <div class="input-group justify-content-center">
-                    <div class="row justify-content-center">
-                    
-                    	<c:forEach var="candidato" items="${candidatos}">
-                    		<c:if test="${voto.estamento.eleccion.id == candidato.eleccion.id}">
-                    			<div class="col-sm-5 mb-3">
-                            <div class="card">
+            <div class="card card-body mb-5">
+            <form action="votar?action=confirmedVoto&candidate=${candidato.id}" method="POST">
+             <p class="tx-center">Usted ha elegido el siguiente candidato para las elecciones de <span class="card bg-red"><c:out value="${eleccion.nombre}"></c:out></span></p>
+                <div class="card">
                                 <a href="votar?action=selected&candidate=${candidato.id}">
                                     <div class="card-header bg-red ">
                                     <p class="tx-center">
-                                    <div class="candidate bg-red p-2">
+                                    <div class="candidate bg-red p-2 tx-center">
                                     <label class="tx-center"><c:out value="${candidato.numero}"></c:out></label>
                                     </div>
                                     <p class="tx-center"><c:out value="${candidato.nombre}"></c:out><c:out value="${candidato.apellido}"></c:out></p>
                                 	</div>
                                 </a>
                             </div>
-                        </div>
-                    		</c:if>
-                    		
-                    	</c:forEach>
-                    </div>
-                </div>
-                
-                  
+                            <div class="status m-2" id="status"></div>
+                            <div id="g-recaptcha" class="g-recaptcha"
+					data-sitekey="6LdNURgbAAAAAPErZBouNZj-ijZpwojxvBHS8Iym" data-callback="enabledSubmit"></div>
+                <input id="btn-s" type="submit" value="Registrar mi voto" class="mt-3 btn bg-red"></input>
             </div>
       </div>
+      <input name="votoid" value="${voto.id}" hidden>
+      </form>
    </main>
 
 
@@ -73,6 +62,13 @@
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="js/main.js"></script>
+    <script>
+    
+    function enabledSubmit(response) {
+    	$('#btn-s').prop('disabled', false);
+    }
+    </script>
 </body>
 </html>

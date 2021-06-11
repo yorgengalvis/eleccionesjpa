@@ -12,8 +12,8 @@ $(document).ready( function () {
             format: 'yyyy-mm-dd'
         });
     });
-    
-    
+    $('#btn-s').prop('disabled', true);
+   
     $('#estamentoSelect').on('change', function (){
       	let idestamento=$('#estamentoSelect').val();
       	$.ajax({

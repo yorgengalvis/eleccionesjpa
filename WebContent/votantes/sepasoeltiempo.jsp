@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/main.css">
-<title> Votar | Sistema Votaciones</title>
+<title> Error | Sistema Votaciones</title>
 </head>
 <body>
 
@@ -24,46 +24,13 @@
       </div>
    </header>
    <main>
-    <div class="row p-2">
-        <div class="col-sm-3 tx-center">${votante.nombre}</div>
-        <div class="col-sm-4 tx-center">${votante.email}</div>
-        <div class="col-sm-4 tx-center"><a class="btn bg-red w-50" href="/EleccionesUFPS2021">Cerrar sesion</a></div>
-    </div>
-      <div class="container mt-3" >
+           <div class="container mt-3" >
          <div class="card card-header bg-red tx-center">
-            Selección de candidato
+               Error Votación
             </div>
-            <div class="card card-body">
-                <p class="tx-center">Rectoria UFPS 2021 <br>
-                    <label class="name-estamento">Docente</label>
-                </p>
-                <p>Debes seleccionar el candidato de preferencia y confirmar tu voto.</p>
-                
-                <div class="input-group justify-content-center">
-                    <div class="row justify-content-center">
-                    
-                    	<c:forEach var="candidato" items="${candidatos}">
-                    		<c:if test="${voto.estamento.eleccion.id == candidato.eleccion.id}">
-                    			<div class="col-sm-5 mb-3">
-                            <div class="card">
-                                <a href="votar?action=selected&candidate=${candidato.id}">
-                                    <div class="card-header bg-red ">
-                                    <p class="tx-center">
-                                    <div class="candidate bg-red p-2">
-                                    <label class="tx-center"><c:out value="${candidato.numero}"></c:out></label>
-                                    </div>
-                                    <p class="tx-center"><c:out value="${candidato.nombre}"></c:out><c:out value="${candidato.apellido}"></c:out></p>
-                                	</div>
-                                </a>
-                            </div>
-                        </div>
-                    		</c:if>
-                    		
-                    	</c:forEach>
-                    </div>
-                </div>
-                
-                  
+            <div class="card card-body mb-5">
+            <p class="tx-center"> Ooops! se te ha pasado el tiempo de votacion, la eleccion ha finalizado.<p>
+            </span>
             </div>
       </div>
    </main>
